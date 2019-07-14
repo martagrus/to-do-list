@@ -1,18 +1,20 @@
-let $list, $input, $addBtn;
+let $list, $input, $addBtn, $closePU, $cancelBtn;
 
-let firstList = ['dog', 'cat', 'cook'];
+let firstList = ['dog', 'cat', 'food'];
 
 main = () => {
     prepareDOMElements();
     prepareDOMEvents();
     prepareInitialList();
-    removeListElement();
+    closePopup();
 }
 
 prepareDOMElements = () => {
     $list = document.getElementById('list');
     $input = document.getElementById('newInput');
     $addBtn = document.getElementById('addBtn');
+    $closePU = document.getElementById('popUp');
+    $cancelBtn = document.getElementById('cancelBtn');
 }
 
 prepareDOMEvents = () => {
@@ -44,9 +46,10 @@ createElement = (title) => {
     return newElement;
 }
 
-createNewButton = (wdid) => {
+createNewButton = (btnRole) => {
     const newButton = document.createElement('button');
-    newButton.innerText = wdid;
+    newButton.innerText = btnRole;
+    
     return newButton;
 }
 
@@ -72,20 +75,21 @@ function acceptChangeHandler() {
     // closePopup()
 }
 
-function openPopup() {
-    // Otwórz popup
+openPopup = () => {
+
 }
 
-function closePopup() {
-    // Zamknij popup
+closePopup = () => {
+    $closePU.addEventListener('click', declineChanges);
+    $cancelBtn.addEventListener('click', declineChanges);
 }
 
-function declineChanges() { //niepotrzebna raczej
-    // closePopup()
+declineChanges = () => {
+   $closePU.style.display = "none";
 }
 
 function markElementAsDone(/* id */) {
-    //zaznacz element jako wykonany (podmień klasę CSS)
+    document.getElementById('')
 }
 
 document.addEventListener('DOMContentLoaded', main);
