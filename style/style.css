@@ -38,7 +38,7 @@ li button {
 }
 
 li:nth-of-type(odd) {
-    background-color: #f78686;
+    background-color: #f6ff9f;
 }
 
 li:nth-of-type(even) {
@@ -46,13 +46,8 @@ li:nth-of-type(even) {
 }
 
 li:hover {
-    background: #f739a6;
+    background: #f78686;
   }
-
-/* ul li:checked {
-    background: #f6ff9f;
-    text-decoration: line-through;
-} */
 
 .popup {
     display: none;

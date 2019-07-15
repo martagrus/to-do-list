@@ -1,5 +1,4 @@
-let $list, $input, $addBtn, $closePU, $cancelBtn, $deleteBtn, $openPU, $doneBtn;
-
+let $list, $input, $addBtn, $closePU, $cancelBtn;
 let nextId = 1;
 
 let firstList = ['dog', 'cat', 'food'];
@@ -8,10 +7,7 @@ main = () => {
     prepareDOMElements();
     prepareDOMEvents();
     prepareInitialList();
-    openPopup();
     closePopup();
-    removeListElement();
-    markElementAsDone();
 }
 
 prepareDOMElements = () => {
@@ -20,9 +16,9 @@ prepareDOMElements = () => {
     $addBtn = document.getElementById('addBtn');
     $closePU = document.getElementById('popUp');
     $cancelBtn = document.getElementById('cancelBtn');
-    $deleteBtn = document.getElementById('delete-'+ nextId);
-    $openPU = document.getElementById('edit-' + nextId);
-    $doneBtn = document.getElementById('done-' + nextId);
+    //$deleteBtn = document.getElementById('delete-'+ nextId);
+    //$openPU = document.getElementById('edit-' + nextId);
+    //$doneBtn = document.getElementById('done-' + nextId);
 }
 
 prepareDOMEvents = () => {
@@ -48,28 +44,38 @@ createElement = (title) => {
     const newElement = document.createElement('li');
     newElement.innerText = title;
     newElement.id = nextId;
-    newElement.appendChild(createNewButton('Done', "done-" + nextId));
-    newElement.appendChild(createNewButton('Edit', "edit-" + nextId));
-    newElement.appendChild(createNewButton('Delete', "delete-" + nextId));
+    newElement.appendChild(createNewButton('Done', "done-" + nextId, nextId));
+    newElement.appendChild(createNewButton('Edit', "edit-" + nextId, nextId, popUp));
+    newElement.appendChild(createNewButton('Delete', 'delete-' + nextId, nextId));
 
     nextId++;
     return newElement;
 }
 
-createNewButton = (btnRole, btnId) => {
+createNewButton = (btnRole, btnId, elementId, popUp) => {
     const newButton = document.createElement('button');
     newButton.innerText = btnRole;
     newButton.id = btnId;
-    
+    if (btnRole === 'Delete') {
+        newButton.addEventListener ('click', () => {
+            document.getElementById(elementId).remove();
+        });
+    }
+    if (btnRole === 'Done') {
+        newButton.addEventListener ('click', () => {
+            document.getElementById(elementId).style.background = "#f739a6";
+            document.getElementById(elementId).style.textDecoration = "line-through";
+        });
+    }
+    if (btnRole === 'Edit') {
+        newButton.addEventListener ('click', () => {
+            document.getElementById(popUp).style.display = "block";
+        });
+    }
+
     return newButton;
 }
 
-removeListElement = () => {
-    $deleteBtn.addEventListener('click', closeLi = () => {
-    let deleteLi = document.getElementById(nextId);
-    deleteLi.remove;
-});
-}
 
 function editListElement(id) {
     // Pobranie informacji na temat zadania
@@ -88,12 +94,12 @@ function acceptChangeHandler() {
     // closePopup()
 }
 
-openPopup = () => {
-    $openPU.addEventListener('click', openPU = (popUp) => {
-    let popUpWindow = document.getElementbyId('popUp');    
-    popUpWindow.style.display = "block";
-    });
-}
+//openPopup = () => {
+    //$openPU.addEventListener('click', openPU = (popUp) => {
+    //let popUpWindow = document.getElementbyId('popUp');    
+    //popUpWindow.style.display = "block";
+    //});
+//}
 
 closePopup = () => {
     $closePU.addEventListener('click', declineChanges);
@@ -103,13 +109,5 @@ closePopup = () => {
 declineChanges = () => {
     $closePU.style.display = "none";
 }
-
-markElementAsDone = () => {
-    $doneBtn.addEventListener('click', liChecked = () => {
-    li.style.background = "#f6ff9f";
-    li.style.textDecoration = "line-through";
-});
-}
-
 
 document.addEventListener('DOMContentLoaded', main);
