@@ -45,14 +45,14 @@ createElement = (title) => {
     newElement.innerText = title;
     newElement.id = nextId;
     newElement.appendChild(createNewButton('Done', "done-" + nextId, nextId));
-    newElement.appendChild(createNewButton('Edit', "edit-" + nextId, nextId, popUp));
+    newElement.appendChild(createNewButton('Edit', "edit-" + nextId, nextId));
     newElement.appendChild(createNewButton('Delete', 'delete-' + nextId, nextId));
 
     nextId++;
     return newElement;
 }
 
-createNewButton = (btnRole, btnId, elementId, popUp) => {
+createNewButton = (btnRole, btnId, elementId) => {
     const newButton = document.createElement('button');
     newButton.innerText = btnRole;
     newButton.id = btnId;
@@ -63,13 +63,13 @@ createNewButton = (btnRole, btnId, elementId, popUp) => {
     }
     if (btnRole === 'Done') {
         newButton.addEventListener ('click', () => {
-            document.getElementById(elementId).style.background = "#f739a6";
+            document.getElementById(elementId).style.background = "#db5858";
             document.getElementById(elementId).style.textDecoration = "line-through";
         });
     }
     if (btnRole === 'Edit') {
         newButton.addEventListener ('click', () => {
-            document.getElementById(popUp).style.display = "block";
+            document.getElementById('popUp').style.display = "block";
         });
     }
 
@@ -93,13 +93,6 @@ function acceptChangeHandler() {
     // Następnie zmodyfikuj element listy wrzucając w niego nowyTitle, nowyColor...
     // closePopup()
 }
-
-//openPopup = () => {
-    //$openPU.addEventListener('click', openPU = (popUp) => {
-    //let popUpWindow = document.getElementbyId('popUp');    
-    //popUpWindow.style.display = "block";
-    //});
-//}
 
 closePopup = () => {
     $closePU.addEventListener('click', declineChanges);

@@ -9,7 +9,7 @@ h1 {
 }
 
 .new-task {
-    background-color:	#c031b5;
+    background-color: #eeb2b2;
     padding: 30px;
     color:black;
     text-align: center;
@@ -38,15 +38,15 @@ li button {
 }
 
 li:nth-of-type(odd) {
-    background-color: #f6ff9f;
+    background-color: #cc9999;
 }
 
 li:nth-of-type(even) {
-    background-color: #ffce96;
+    background-color: #e17e7e;
 }
 
 li:hover {
-    background: #f78686;
+    background: #ba6363;
   }
 
 .popup {
@@ -57,7 +57,7 @@ li:hover {
     width: 60vw; 
     height: 50vh; 
     overflow: auto; 
-    background-color: rgba(192,49,181,0.6); /   
+    background-color: rgba(238,178,178,0.6); /   
 }
 
 .popup-content {
