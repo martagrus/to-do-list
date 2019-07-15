@@ -1,5 +1,10 @@
 let $list, $input, $addBtn, $closePU, $cancelBtn;
 
+let nextId = 1;
+let doneId = "done-" + nextId;
+let editId = "edit-" + nextId;
+let deleteId = "delete-" + nextId;
+
 let firstList = ['dog', 'cat', 'food'];
 
 main = () => {
@@ -39,18 +44,26 @@ addNewElementToList = (title) => {
 createElement = (title) => {
     const newElement = document.createElement('li');
     newElement.innerText = title;
-    newElement.appendChild(createNewButton('Done'));
-    newElement.appendChild(createNewButton('Edit'));
-    newElement.appendChild(createNewButton('Delete'));
+    newElement.id = nextId;
+    newElement.appendChild(createNewButton('Done', doneId));
+    newElement.appendChild(createNewButton('Edit', editId));
+    newElement.appendChild(createNewButton('Delete', deleteId));
 
+    nextId++;
     return newElement;
 }
 
-createNewButton = (btnRole) => {
-    const newButton = document.createElement('button');
+createNewButton = (btnRole, btnId) => {
+    const newButton = document.createElement('button', btnId);
     newButton.innerText = btnRole;
     
     return newButton;
+}
+
+addId = (i) => {
+    li.forEach(newElement => {
+        newElement.id = i, i++
+    })
 }
 
 function removeListElement(/* id */) {
@@ -85,7 +98,7 @@ closePopup = () => {
 }
 
 declineChanges = () => {
-   $closePU.style.display = "none";
+    $closePU.style.display = "none";
 }
 
 function markElementAsDone(/* id */) {
