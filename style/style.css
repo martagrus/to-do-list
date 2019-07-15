@@ -49,13 +49,13 @@ li:hover {
     background: #f739a6;
   }
 
-li:checked {
+/* ul li:checked {
     background: #f6ff9f;
     text-decoration: line-through;
-}
+} */
 
 .popup {
-    display: block;
+    display: none;
     position: fixed; 
     left: 20vw;
     top:25vh;
