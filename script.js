@@ -23,8 +23,9 @@ prepareDOMEvents = () => {
     $closePU.addEventListener('click', closePopup);
     $cancelBtn = document.getElementById('cancelBtn');
     $cancelBtn.addEventListener('click', closePopup);
-    $changeBtn = document.getElementById('changeBtn');
-    $changeBtn.addEventListener('click', closePopup);
+   // $changeBtn = document.getElementById('changeBtn');
+   // $changeBtn.addEventListener('click', closePopup);
+    $list.addEventListener('click', listClickManager);
 }
 
 prepareInitialList = () => {
@@ -54,11 +55,11 @@ createElement = (title) => {
     return newElement;
 }
 
-createNewButton = (btnRole, btnId, elementId, nextId) => {
+createNewButton = (btnRole, btnId, nextId) => {
     const newButton = document.createElement('button');
     newButton.innerText = btnRole;
     newButton.id = btnId;
-    if (btnRole === 'Delete') {
+    /*if (btnRole === 'Delete') {
         newButton.addEventListener ('click', () => {
             document.getElementById(elementId).remove();
         });
@@ -74,17 +75,33 @@ createNewButton = (btnRole, btnId, elementId, nextId) => {
             document.getElementById('popUp').style.display = "block";
             editListElement;
         });
-    }
+    }*/
 
     return newButton;
 }
 
+listClickManager = (eventObject, elementId) => {
+    var action = eventObject.target.id.split('-')[0];
+    if (action === 'done') {
+        document.getElementById(elementId).style.background = "#db5858";
+        document.getElementById(elementId).style.textDecoration = "line-through";
+    } else if (action === 'delete') {
+        document.getElementById(elementId).remove();
+    } else if (action === 'edit') {
+        editListElement();
+        }
+    } 
 
-function editListElement(nextId) {
-    $editedText = document.getElementById(nextId).innerHTML;
+    // Rozstrzygnięcie co dokładnie zostało kliknięte i wywołanie odpowiedniej funkcji
+    // event.target.parentElement.id
+    // if(event.target.className === 'edit') { editListElement(id) }
+
+
+editListElement = () => {
+    document.getElementById('popUp').style.display = "block";
+    /*$editedText = document.getElementById(nextId).innerHTML;
     $editedText = document.querySelector(inpupt.value);
-    $editedText.id = ("edited-" + nextId);
-    
+    $editedText.id = ("edited-" + nextId);*/
     }
 
     // Pobranie informacji na temat zadania
@@ -95,14 +112,10 @@ function editListElement(nextId) {
 
 
 function addDataToPopup(/* Title, author, id */) {
-
-    
     // umieść informacje w odpowiednim miejscu w popupie
 }
 
 function acceptChangeHandler() {
-
-
     // pobierz dane na temat zadania z popupu (id, nowyTitle, nowyColor ...)
     // Następnie zmodyfikuj element listy wrzucając w niego nowyTitle, nowyColor...
     // closePopup()
