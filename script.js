@@ -1,4 +1,4 @@
-let $list, $input, $addBtn, $closePU, $cancelBtn, $editedText;
+let $list, $input, $addBtn, $closePU, $cancelBtn;
 let nextId = 1;
 
 let firstList = ['dog', 'cat', 'food'];
@@ -47,15 +47,15 @@ createElement = (title) => {
     const newElement = document.createElement('li');
     newElement.innerText = title;
     newElement.id = nextId;
-    newElement.appendChild(createNewButton('Done', "done-" + nextId, nextId));
-    newElement.appendChild(createNewButton('Edit', "edit-" + nextId, nextId));
-    newElement.appendChild(createNewButton('Delete', "delete-" + nextId, nextId));
+    newElement.appendChild(createNewButton('Done', "done-" + nextId));
+    newElement.appendChild(createNewButton('Edit', "edit-" + nextId));
+    newElement.appendChild(createNewButton('Delete', "delete-" + nextId));
 
     nextId++;
     return newElement;
 }
 
-createNewButton = (btnRole, btnId, nextId) => {
+createNewButton = (btnRole, btnId) => {
     const newButton = document.createElement('button');
     newButton.innerText = btnRole;
     newButton.id = btnId;
@@ -80,8 +80,9 @@ createNewButton = (btnRole, btnId, nextId) => {
     return newButton;
 }
 
-listClickManager = (eventObject, elementId) => {
-    var action = eventObject.target.id.split('-')[0];
+listClickManager = (eventObject) => {
+    let action = eventObject.target.id.split('-')[0];
+    let elementId = eventObject.target.id.split('-')[1];
     if (action === 'done') {
         document.getElementById(elementId).style.background = "#db5858";
         document.getElementById(elementId).style.textDecoration = "line-through";
@@ -97,7 +98,12 @@ listClickManager = (eventObject, elementId) => {
     // if(event.target.className === 'edit') { editListElement(id) }
 
 
-editListElement = () => {
+editListElement = (elementId) => {
+    let oldText = elementId.innerText
+    console.log(oldText);
+    
+
+
     document.getElementById('popUp').style.display = "block";
     /*$editedText = document.getElementById(nextId).innerHTML;
     $editedText = document.querySelector(inpupt.value);
