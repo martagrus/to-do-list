@@ -45,6 +45,11 @@ li:hover {
     background: #ba6363;
 }
 
+.done {
+    background: #db5858;
+    text-decoration: line-through;
+}
+
 .popup {
     display: none;
     position: fixed; 

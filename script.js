@@ -69,26 +69,32 @@ listClickManager = (eventObject) => {
     let action = eventObject.target.id.split('-')[0];
     let elementId = eventObject.target.id.split('-')[1];
     if (action === 'done') {
-        document.getElementById(elementId).style.background = "#db5858";
-        document.getElementById(elementId).style.textDecoration = "line-through";
+        markAsDone (elementId);
     } else if (action === 'delete') {
-        document.getElementById(elementId).remove();
+        deleteItem (elementId);
     } else if (action === 'edit') {
         editListElement(elementId);
-        }
-    } 
+    }
+} 
+
+markAsDone = (elementId) => {
+    document.getElementById(elementId).classList.add('done');
+}
+
+deleteItem = (elementId) => {
+    document.getElementById(elementId).remove();
+}
 
 editListElement = (id) => {
     let editedText = document.getElementById(id).firstChild;
     editedTextId = id;
     openPopup();
     $popInput.value = editedText.textContent;
-    acceptChangeHandler();
-    }
+}
 
-acceptChangeHandler = (editedText) => {
-    //let editedText = document.getElementById(id);
-    editedText.innerText = $popInput.value;
+acceptChangeHandler = () => {
+    let editedText = document.getElementById(editedTextId).firstChild;
+    editedText.textContent = $popInput.value;
     closePopup();
 }
 
