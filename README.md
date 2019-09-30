@@ -1,5 +1,5 @@
 ## Page link
-https://martagrus.github.io/to-do-list/index.html
+https://martagrus.github.io/to-do-list/
 
 ## Description
 Project built during Frontend Developer Bootcamp at CodersTrust
