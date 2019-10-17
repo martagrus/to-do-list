@@ -37,7 +37,10 @@ prepareInitialList = () => {
 }
 
 addButtonClickHandler = () => {
-    addNewElementToList($input.value);
+    if ($input.value !== ''){
+        addNewElementToList($input.value);
+        $input.value = '';
+    }
 }
 
 addNewElementToList = (title) => {
