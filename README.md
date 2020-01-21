@@ -2,10 +2,7 @@
 https://martagrus.github.io/to-do-list/
 
 ## Description
-Project built during Frontend Developer Bootcamp at CodersTrust
-
-## Pictures
-Sticky note picture: Obraz OpenClipart-Vectors z Pixabay;
+To-do list that allows to add, change, and delete tasks.
 
 ## Built with
 JavaScript, HTML, CSS

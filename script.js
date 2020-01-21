@@ -1,4 +1,4 @@
-let $list, $input, $addBtn, $closePU, $cancelBtn, $popInput, $changeBtn;
+let $list, $input, $addBtn, $closePU, $cancelBtn, $popInput, $changeBtn, $clearBtn, $delLastBtn;
 let nextId = 1;
 let editedTextId;
 
@@ -16,6 +16,8 @@ prepareDOMElements = () => {
     $list = document.getElementById('list');
     $input = document.getElementById('newInput');
     $addBtn = document.getElementById('addBtn');
+    $clearBtn = document.getElementById('clearBtn');
+    $delLastBtn = document.getElementById('delLastBtn');
     $popInput = document.getElementById('ppContent');
     $closePU = document.getElementById('closePU');
     $cancelBtn = document.getElementById('cancelBtn');
@@ -24,6 +26,8 @@ prepareDOMElements = () => {
 
 prepareDOMEvents = () => {
     $addBtn.addEventListener('click', addButtonClickHandler);
+    $clearBtn.addEventListener('click', clearList);
+    $delLastBtn.addEventListener('click', deleteLastItem);
     $closePU.addEventListener('click', closePopup);
     $cancelBtn.addEventListener('click', closePopup);
     $list.addEventListener('click', listClickManager);
@@ -86,6 +90,18 @@ markAsDone = (elementId) => {
 
 deleteItem = (elementId) => {
     document.getElementById(elementId).remove();
+}
+
+clearList = () => {
+    let list = document.getElementsByTagName("li");
+    for (let i = list.length - 1; i >= 0; --i) {
+        list[i].remove();
+    }
+}
+
+deleteLastItem = () => {
+    let last = document.getElementsByTagName("li");
+    last[last.length -1].remove();
 }
 
 editListElement = (id) => {
